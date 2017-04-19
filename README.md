@@ -40,4 +40,3 @@ NOTE: When running the web_server.js, you will need admin / root privlidges due 
     ```  
     
 3. Open a browser and go to http://localhost for the default home page (we are working on that) or http://localhost/admin for the administrator pages.   
-"# rsi-with-friends" 

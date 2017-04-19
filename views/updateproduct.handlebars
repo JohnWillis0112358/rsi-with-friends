@@ -244,16 +244,24 @@
                 // using the done promise callback
                 .done(function(data) {
                     // Show success alert
-                    swal({   
-                      title: "Success!",   
-                      text: data.data.product_name + " was updated.",   
-                      type: "success"   
-                    }, function(isConfirm) {   
-                      if (isConfirm) {     
+                swal({
+                        title: "Are you sure?",
+                        text: "Your information will be updated!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yes, update it!",
+                        closeOnConfirm: false
+                    },
+                    function(isConfirm){
+                        swal("Updated!", "Your information has been updated.", "success");
+                        if (isConfirm) {     
                         window.location.href="/admin";  
                       } 
-                    })
+                    
+                    }) 
                 })
+               
                 .fail(function(data){
                     // In a fail, we need to look inside the responseJSON object for our
                     // APIs error message

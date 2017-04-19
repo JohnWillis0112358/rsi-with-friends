@@ -385,4 +385,3 @@ exports.totalCostofOnHand = function(req, res) {
 	});
 };
 
-

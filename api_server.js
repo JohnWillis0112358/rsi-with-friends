@@ -36,7 +36,7 @@ app.use(cors());
 var config = {
   user: 'postgres', 				// env var: PGUSER
   database: 'richwood-scentific', 	// env var: PGDATABASE
-  password: 'mew', 			// env var: PGPASSWORD
+  password: 'darkride7', 			// env var: PGPASSWORD
   host: 'localhost', 				// Server hosting the postgres database
   port: 5432, 						// env var: PGPORT ** CHECK YOUR PORT
   max: 10, 							// max number of clients in the pool

@@ -90,7 +90,6 @@
 <script type="text/javascript">
     // "DT_RowId" will be used for row id
     $(document).ready(function() {
-
         // Inside the ready function, lets call to fill the product types select menu
         $.ajax({
             url: "http://localhost:3000/api/products",
@@ -98,16 +97,12 @@
             type: "GET",
             data: {},
             success: function (result) {
-
                 // vars for DataTable
                 var columns = [];
-
                 // We iterate through the array of records we get back from the database API call
                 // If you drill down in the console, you will find the array at result.data.products
-
                 // First, we build the columns array dynamically by examining the first record in the returned set.
                 if(result.data.products.length > 0) {
-
                     var firstRecord = result.data.products[0];
                   
                     for(var key in firstRecord) {
@@ -122,7 +117,6 @@
                 }
                 // Push in our buttons as a final column
                 columns.push( {"defaultContent": "<button class=\"btn btn-default\"><i class=\"fa fa-pencil\"></i></button><button class=\"btn btn-delete\"><i class=\"fa fa-trash\"></i></button>"} )
-
                 // Draw the table
                 var table = $('#data_table').DataTable( {
                     "data" : result.data.products,
@@ -145,9 +139,7 @@
                     }
                     
                 } );
-
             } // End success
         }); // End ajax
-
     } );
 </script>
