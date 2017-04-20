@@ -1,0 +1,189 @@
+		<nav class="navbar">
+			<div class="container">
+				<a class="navbar-brand" href="/">Richwood Scentific</a>
+				<div class="navbar-right">
+					<div class="container minicart"></div>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container-fluid breadcrumbBox text-center">
+			<ol class="breadcrumb">
+				<li><a href="/">Continue Shopping</a></li>
+                <li class="active"><a href="/cart" >View Cart</a></li>
+				<li><a href="/paymentshippingform">Shipping and Payment</a></li>
+				<li><a href="#">Check Out</a></li>
+			</ol>
+</div>
+		
+		<div class="container text-center">
+
+			<div class="col-md-5 col-sm-12">
+				<div class="bigcart"></div>
+				<h1>Your shopping cart</h1>
+				<p>
+					This is a free and <b><a href="http://tutorialzine.com/2014/04/responsive-shopping-cart-layout-twitter-bootstrap-3/" title="Read the article!">responsive shopping cart layout, made by Tutorialzine</a></b>. It looks nice on both desktop and mobile browsers. Try it by resizing your window (or opening it on your smartphone and pc).
+				</p>
+			</div>
+			
+			<div class="col-md-7 col-sm-12 text-left">
+				<ul>
+					<li class="row list-inline columnCaptions">
+						<span>QTY</span>
+						<span>ITEM</span>
+						<span>Price</span>
+					</li>
+					<li class="row">
+						<span class="quantity" type="number" step="any"> <label for="inputQuantity">Quantity</label>
+                        <!-- Note a numeric validator field will only want whole numbers unless we set the step property to "any" -->
+                        <input class="form-control" type="number" step="any" id="inputQuantity" name="unit_price" placeholder="Enter unit price">1</span>
+						<span class="itemName">Birthday Cake</span>
+						<span class="popbtn"><a class="arrow"></a></span>
+						<span class="price">$49.95</span>
+					</li>
+					<li class="row">
+						<span class="quantity">50</span>
+						<span class="itemName">Party Cups</span>
+						<span class="popbtn"><a class="arrow"></a></span>
+						<span class="price">$5.00</span>
+					</li>
+					<li class="row">
+						<span class="quantity">20</span>
+						<span class="itemName">Beer kegs</span>
+						<span class="popbtn"><a class="arrow"></a></span>
+						<span class="price">$919.99</span>				
+					</li>
+					<li class="row">
+						<span class="quantity">18</span>
+						<span class="itemName">Pound of beef</span>
+						<span class="popbtn"><a class="arrow"></a></span>
+						<span class="price">$269.45</span>
+					</li>
+					<li class="row">
+						<span class="quantity">1</span>
+						<span class="itemName">Bullet-proof vest</span>
+						<span class="popbtn"  data-parent="#asd" data-toggle="collapse" data-target="#demo"><a class="arrow"></a></span>
+						<span class="price">$450.00</span>				
+					</li>
+					<li class="row totals">
+						<span class="itemName">Total:</span>
+						<span class="price">$1694.43</span>
+						<span class="order"> <a class="text-center">ORDER</a></span>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+<script type="text/javascript">
+    // "DT_RowId" will be used for row id
+    $(document).ready(function() {
+
+        // Inside the ready function, lets call to fill the product types select menu
+        $.ajax({
+            url: "http://localhost:3000/api/cart",
+            dataType: "json",
+            type: "GET",
+            data: {},
+            success: function (result) {
+
+                // vars for DataTable
+                var columns = [];
+
+                // We iterate through the array of records we get back from the database API call
+                // If you drill down in the console, you will find the array at result.data.products
+
+                // First, we build the columns array dynamically by examining the first record in the returned set.
+                if(result.data.cart.length > 0) {
+
+                    var firstRecord = result.data.cart[0];
+                  
+                    for(var key in firstRecord) {
+                      // We don't want id visible
+                      if(key == 'id' || key == 'id_type' || key == 'id_scent_type') {
+                        columns.push( { "title" : key, "data" : key, "visible": false } );
+                      } else { 
+                        // Push in the data
+                        columns.push( { "title" : key, "data" : key } );
+                      }
+                    }
+                }
+                // Push in our buttons as a final column
+                columns.push( {"defaultContent": "<button class=\"btn btn-default\"><i class=\"fa fa-pencil\"></i></button><button class=\"btn btn-delete\"><i class=\"fa fa-trash\"></i></button>"} )
+
+                // Draw the table
+                var table = $('#data_table').DataTable( {
+                    "data" : result.data.cart,
+                    "columns" : columns,
+                    columnDefs: [
+                      { width: '500px', targets: 0 }
+                    ],
+                    fixedColumns: true
+                } );  
+ 
+                $('#data_table tbody').on( 'click', 'button', function () {
+                    var data = table.row( $(this).parents('tr') ).data();
+                    var buttonClass = $(this).attr("class");
+                    if(buttonClass == "btn btn-default") {
+                      // How would you hook this up?
+                      alert( "Change Quantity " + data.id );
+                    } else {
+                      // And this? What about the "are you sure?"
+                      alert( "Remove from Cart " + data.id );
+                    }
+                    
+                } );
+
+            } // End success
+        }); // End ajax
+
+    } );
+</script>
+		<!-- The popover content -->
+
+		<div id="popover" style="display: none">
+			<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+			<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+		</div>
+		
+		<!-- JavaScript includes -->
+
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/customjs.js"></script>
+
+<script>
+ /* $(document).ready(function() {
+        $('.cart_quantity_up').click(function(){
+            var quantityBox = $(this).siblings("#TextBox");
+            var quantity= parseInt(quantityBox.val()) + 1;
+            quantityBox.val(quantity);
+
+            var price = parseFloat($(this).parent().siblings(".cart_price").children("#price").html());
+            var totalPrice = quantity * price;
+            $(this).parent().siblings(".cart_total").children("#totprice").html(totalPrice);
+
+            updateBill();
+        });
+
+        $('.cart_quantity_down').click(function() {
+            var quantityBox = $(this).siblings("#TextBox");
+            var quantity= parseInt(quantityBox.val()) - 1;
+            quantityBox.val(quantity);
+
+            var price = parseFloat($(this).parent().siblings(".cart_price").children("#price").html());
+            var totalPrice = quantity * price;
+            $(this).parent().siblings(".cart_total").children("#totprice").html(totalPrice);
+
+            updateBill();
+        });
+    });
+
+    function updateBill(){
+         var totalBill=0.0;
+         $(".cart_total_price").each(function(){ 
+              totalBill+=parseFloat($(this).html()) 
+         })
+         $("#totalbill > span").html(totalBill);
+    } */
+</script>
+
