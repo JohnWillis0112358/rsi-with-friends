@@ -112,6 +112,20 @@ app.get("/addscenttype", function (req, res) {
 
 
 //-----------------------------------------
+// Cart Pages
+//-----------------------------------------
+// Page view cart
+app.get("/cart", function (req, res) {
+	// Send the 
+    res.render('cart', {layout: 'cart'});
+});
+// Page to process cart
+app.get("/paymentshippingform", function (req, res) {
+	// Send the 
+    res.render('paymentshippingform', {layout: 'cart'});
+});
+
+//-----------------------------------------
 // Utility pages
 //-----------------------------------------
 // Generic Page to view Database tables
