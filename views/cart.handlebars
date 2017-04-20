@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Shopping Cart</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>		
-	</head>
-
-	<body>
-		
-		<nav class="navbar">
+<nav class="navbar">
 			<div class="container">
-				<a class="navbar-brand" href="#">Your online store</a>
+				<a class="navbar-brand" href="/">Richwood Scentific</a>
 				<div class="navbar-right">
 					<div class="container minicart"></div>
 				</div>
@@ -22,11 +9,11 @@
 		
 		<div class="container-fluid breadcrumbBox text-center">
 			<ol class="breadcrumb">
-				<li><a href="#">Review</a></li>
-				<li class="active"><a href="#">Order</a></li>
-				<li><a href="#">Payment</a></li>
+				<li><a href="/">Continue Shopping</a></li>
+                <li class="active"><a href="/cart" >View Cart</a></li>
+				<li><a href="/paymentshippingform">Check Out</a></li>
 			</ol>
-		</div>
+        </div>
 		
 		<div class="container text-center">
 
@@ -46,34 +33,35 @@
 						<span>Price</span>
 					</li>
 					<li class="row">
-						<span class="quantity">1</span>
+                        <span class="quantity">
+                        <input class="form-control" type="number" step="any" id="inputQuantity"></span>
 						<span class="itemName">Birthday Cake</span>
-						<span class="popbtn"><a class="arrow"></a></span>
+						<!--<span class="popbtn"><a class="arrow"></a></span>-->
 						<span class="price">$49.95</span>
 					</li>
 					<li class="row">
-						<span class="quantity">50</span>
+						<span class="quantity"><input class="form-control" type="number" step="any" id="inputQuantity"></span>
 						<span class="itemName">Party Cups</span>
-						<span class="popbtn"><a class="arrow"></a></span>
+						<!--<span class="popbtn"><a class="arrow"></a></span>-->
 						<span class="price">$5.00</span>
 					</li>
 					<li class="row">
-						<span class="quantity">20</span>
+						<span class="quantity"><input class="form-control" type="number" step="any" id="inputQuantity"></span>
 						<span class="itemName">Beer kegs</span>
-						<span class="popbtn"><a class="arrow"></a></span>
+						<!--<span class="popbtn"><a class="arrow"></a></span>-->
 						<span class="price">$919.99</span>				
 					</li>
 					<li class="row">
-						<span class="quantity">18</span>
+						<span class="quantity"><input class="form-control" type="number" step="any" id="inputQuantity"></span>
 						<span class="itemName">Pound of beef</span>
-						<span class="popbtn"><a class="arrow"></a></span>
+						<!--<span class="popbtn"><a class="arrow"></a></span>-->
 						<span class="price">$269.45</span>
 					</li>
 					<li class="row">
-						<span class="quantity">1</span>
+						<span class="quantity"><input class="form-control" type="number" step="any" id="inputQuantity"></span>
 						<span class="itemName">Bullet-proof vest</span>
-						<span class="popbtn"  data-parent="#asd" data-toggle="collapse" data-target="#demo"><a class="arrow"></a></span>
-						<span class="price">$450.00</span>				
+						<!--<span class="popbtn"  data-parent="#asd" data-toggle="collapse" data-target="#demo"><a class="arrow"></a></span>-->	
+						<span class="price">$450.00</span>			
 					</li>
 					<li class="row totals">
 						<span class="itemName">Total:</span>
@@ -94,9 +82,6 @@
 		
 		<!-- JavaScript includes -->
 
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
 		<script src="assets/js/bootstrap.min.js"></script>
 		<script src="assets/js/customjs.js"></script>
-
-	</body>
-</html>
