@@ -99,6 +99,17 @@ app.get('/api/product_cost', products.totalCostofOnHand);
 //-----------------------------------------
 
 //-----------------------------------------
+// Cart
+
+var cart = require('./routes/cart');
+
+// Update
+app.put('/api/cart', cart.updateCart);
+
+// Delete
+app.delete('/api/cart', cart.deleteCart);
+
+//-----------------------------------------
 // Product Types
 
 var product_types = require('./routes/product_types');
