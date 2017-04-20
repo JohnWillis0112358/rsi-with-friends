@@ -6,8 +6,44 @@ var uuid = require('node-uuid');
 // Dates
 var dateutil = require('dateutil');
 
+//-------------------------------------------------------------------------------------------
+// Create a Cart
+exports.createCart = function(req, res) {
+	
+	pool.connect(function(err, client, done) {
+		
+		var handleError = function(err) {
+			// no error occurred, continue with the request
+			if(!err) return false;
+			res.status(500).json({ result:'error', data:{ error:err } });
+			return true;
+	    };
+	    // handle an error from the connect
+		if(handleError(err)) return;
+		
+		// Validate then insert
+		if(req.body.) {
+
+			var queryText = 'INSERT INTO cart (id, id_product, quantity, date_created) VALUES ($1, $2, $3, $4) RETURNING id, id_product'
+			client.query(queryText, [uuid.v4(), req.body.id_product, req.body.quantity, dateutil.date(),], function(err, result) {
+				done();
+				// handle an error from the query
+				if(handleError(err)) return;
+				res.status(200).json({result: 'success', data:{ id : result.rows[0].id, id_product : result.rows[0].id_product }});	
+			});
+	  	
+		} else {
+			done();
+	    	res.status(400).json({ result: 'error', data:{error: 'id_product is required'} });
+		}
+		
+	});
+	
+}
+
+
 //---------------------------------------------------------------------------------------
-// Update
+// Update a Cart
 exports.updateCart = function(req, res) {
 	
 	// get a pg client from the connection pool
@@ -80,7 +116,7 @@ exports.updateCart = function(req, res) {
 
 
 //---------------------------------------------------------------------------------------
-// Delete
+// Delete the Cart
 exports.deleteCart = function(req, res) {
 	
 	// get a pg client from the connection pool
